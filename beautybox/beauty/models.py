@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, UniqueConstraint
+from sqlalchemy import Column, Integer, String, Enum, UniqueConstraint
 
 from beautybox import db
 

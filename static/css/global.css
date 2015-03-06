@@ -1,0 +1,26 @@
+html, body, .container {
+    height: 90%;
+}
+.container {
+    display: table;
+	vertical-align: middle;
+}
+.vertical-center-row {
+    display: table-cell;
+	vertical-align: middle;
+}
+.box-border {
+	padding: 30px;
+	outline: 1px solid gray;
+	border-radius: 4px;
+	box-shadow: 0 0 6px black;
+}
+.center {
+	text-align: center;
+}
+.right {
+	float: right;
+}
+.error {
+	color: red;
+}

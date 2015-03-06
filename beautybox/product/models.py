@@ -25,7 +25,7 @@ class ProductConcernsModel(db.Model):
 
 	id = Column(Integer, primary_key=True)
 	product_id = Column(Integer, ForeignKey("products.id"), index=True)
-	product = relationship("ProductModel", backref="concerns")
+	product = relationship("ProductModel", backref="product_concerns")
 	concerns = Column(String(30))
 
 class ProductSubscriptionModel(db.Model):
