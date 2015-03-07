@@ -11,6 +11,6 @@ app.config.from_object('beautybox.configurations')
 db = SQLAlchemy(app)
 
 # Import the views
-
 import beautybox.user.views
+import beautybox.admin.views
 

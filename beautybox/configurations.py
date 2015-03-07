@@ -10,3 +10,5 @@ SQLALCHEMY_DATABASE_URI = 'postgresql://{username}:{password}@localhost/{databas
 	password = DB['password'],
 	database = DB['db'])
 
+SECRET_KEY = 'SOMERANDOMSECRETKEY'
+

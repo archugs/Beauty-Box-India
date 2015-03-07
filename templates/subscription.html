@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block title %}Subscription{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h3>Your Beauty Box Subscription</h3>
+		{% if message %}
+			<p class="success">{{message}}</p>
+		{% endif %}
+		<form method="post">
+			<p>Choose your subscription plan type</p>
+			<div class="radio">
+				<label>
+				<input type="radio" name="plan_type" value="1"/>
+				Students special package (2 samples and 1 full-sized product)
+				<br/>
+				Rs.100
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="plan_type" value="2"/>
+				Budget friendly package (4 samples and 2 full-sized products)
+				<br/>
+				Rs.250
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="plan_type" value="3"/>
+				Luxury pampering package (4 samples and 2 full-sized products of luxury brands)
+				<br/>
+				Rs.400
+				</label>
+			</div>
+				<div class="radio">
+				<label>
+				<input type="radio" name="plan_type" value="4"/>
+				Go Green package (4 samples and 2 full-sized products of natural and organic brands)
+				<br/>
+				Rs.300
+				</label>
+			</div>
+			<p>Choose your subscription plan duration</p>
+			<div class="radio">
+				<label>
+				<input type="radio" name="duration" value="1"/>
+				One month
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="duration" value="3"/>
+				Three months
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="duration" value="6"/>
+				Six months
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="duration" value="12"/>
+				Twelve months
+				</label>
+			</div>
+			<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+{% endblock %}
+

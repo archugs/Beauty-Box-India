@@ -18,7 +18,8 @@ class UserView(FlaskView):
 			if not user.authentication(request.form["password"]):
 				error = "Invalid login credentials"
 			else:
-				session["user"] = user
+				session["user"] = user.email
+				return redirect(url_for('UserView:profile'))
 		return render_template("login.html", error=error)
 
 	@route("/registration/", methods=["GET", "POST"])
@@ -26,28 +27,37 @@ class UserView(FlaskView):
 	def registration(self):
 		""" New user registration page """
 
+		error = None
 		if request.method == "POST":
-			user = User(request.form["email"])
-			user.register(email=register.form["email"],
-				password=request.form["password"],
-				name=request.form["name"],
-				address=request.form["address"])
-		return render_template("registration.html")
+			if request.form["password"] != request.form["confirm_password"]:
+				error = "Passwords don't match. Please try again."
+			else:
+				user = User(request.form["email"])
+				user.register(email=request.form["email"],
+					password=request.form["password"],
+					name=request.form["name"],
+					address=request.form["address"])
+				session["user"] = request.form["email"]
+				return redirect(url_for('UserView:profile'))
+		return render_template("registration.html", error=error)
 
 	@route("/subscription/", methods=["GET", "POST"])
 	@requires_login
 	def subscription(self):
 		""" User subscription page """
 
+		message = None
 		user = User(session.get("user"))
 		if request.method == "POST":
-			user.subscribe(request.form["plan_id"],
+			user.subscribe(request.form["plan_type"],
 				request.form["duration"])
-		return render_template("subscription.html", data=user.subscription)
+			message = "You have been successfully subscribed to our monthly beauty box.\nYou will receive your first beauty box at the beginning of next month."
+		data = user.get_subscription()
+		return render_template("subscription.html", data=data, message=message)
 
-	@route("/", methods=["GET", "POST"])
+	@route("/products/", methods=["GET", "POST"])
 	@requires_login
-	def home(self):
+	def products(self):
 		if request.method == "POST":
 			user = User(session.get("user"))
 			if "add_to_wishlist" in request.form:
@@ -67,10 +77,13 @@ class UserView(FlaskView):
 				skin_tone=request.form["skin_tone"],
 				skin_sensitivity=request.form["skin_sensitivity"],
 				hair_type=request.form["hair_type"],
-				skin_concerns=request.form["skin_concerns"],
-				hair_concerns=request.form["hair_concerns"],
-				fragrances=request.form["fragrances"])
-		return render_template("profile.html", data=user)
+				skin_concerns=request.form.getlist("skin_concerns"),
+				hair_concerns=request.form.getlist("hair_concerns"),
+				fragrances=request.form.getlist("fragrances"),
+				preferences=request.form.getlist("preferences"))
+			return redirect(url_for('UserView:subscription'))
+		data = user.get_profile()
+		return render_template("profile.html", data=data)
 
 	@route("/logout/", methods=["GET"])
 	@requires_login

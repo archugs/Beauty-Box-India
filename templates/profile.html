@@ -1,0 +1,263 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+	<div class="container">
+		<h3>Your Beauty Profile</h3>
+		<form method="post">
+			<p>1. Age</p>
+			<div class="form-group">
+				<input type="text" name="age" size=2 class="form-group" />
+			</div>
+			<p>2. Gender</p>
+			<div class="radio">
+				<label>
+				<input type="radio" name="gender" value="M"/>
+				Male
+				</label>
+				<label>
+				<input type="radio" name="gender" value="F"/>
+				Female
+				</label>
+			</div>
+			<p>3. What is your skin type?</p>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_type" value="oily"/>
+				Oily
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_type" value="combination"/>
+				Combination
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_type" value="normal"/>
+				Normal
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_type" value="dry"/>
+				Dry
+				</label>
+			</div>
+			<p>4. What is your skin tone?</p>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_tone" value="light"/>
+				Light
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_tone" value="fair"/>
+				Fair
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_tone" value="medium"/>
+				Medium	
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_tone" value="olive"/>
+				Olive
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_tone" value="brown"/>
+				Brown
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_tone" value="black"/>
+				Black
+				</label>
+			</div>
+			<p>5. How sensitive is your skin?</p>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_sensitivity" value="high"/>
+				Very sensitive
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_sensitivity" value="medium"/>
+				Not much sensitive, but occasionally I experience burns and itching
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="skin_sensitivity" value="low"/>
+				My skin is not at all sensitive. I can try all beauty products.
+				</label>
+			</div>
+			<p>6. What is your hair type?</p>
+			<div class="radio">
+				<label>
+				<input type="radio" name="hair_type" value="oily"/>
+				Oily
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="hair_type" value="normal"/>
+				Normal
+				</label>
+			</div>
+			<div class="radio">
+				<label>
+				<input type="radio" name="hair_type" value="dry"/>
+				Dry	
+				</label>
+			</div>
+			<p>6. What are your primary skin concerns?</p>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="skin_concerns" value="8"/>
+				Pigmentation and uneven skin tone
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="skin_concerns" value="9"/>
+				Sunburns and tanning
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="skin_concerns" value="10"/>
+				Ageing, fine lines and wrinkles
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="skin_concerns" value="11"/>
+				Pimples and acne
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="skin_concerns" value="12"/>
+				Under eye dark circles
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="skin_concerns" value="13"/>
+				Dry and chapped lips
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="skin_concerns" value="14"/>
+				Dry, stretchy and itchy skin
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="skin_concerns" value="15"/>
+				Large and clogged pores
+				</label>
+			</div>
+			<p>6. What are your primary hair concerns?</p>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="hair_concerns" value="1"/>
+				Hairfall
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="hair_concerns" value="2"/>
+				Dandruff
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="hair_concerns" value="3"/>
+				Damaged hair
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="hair_concerns" value="4"/>
+				Split ends
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="hair_concerns" value="5"/>
+				Color treated
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="hair_concerns" value="6"/>
+				Oily scalp
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="hair_concerns" value="7"/>
+				Frizzy and unmanageable
+				</label>
+			</div>
+			<p>7. The fragrances that you love to wear</p>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="fragrances" value="1"/>
+				Floral
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="fragrances" value="2"/>
+				Fruity
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="fragrances" value="3"/>
+				Vanilla and chocolate
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="fragrances" value="4"/>
+				Classic and musk
+				</label>
+			</div>
+			<p>8. What type of products would you love to receive in your beauty subscription box?</p>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="preferences" value="makeup"/>
+				Makeup
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="preferences" value="skincare"/>
+				Skin care
+				</label>
+			</div>
+			<div class="checkbox">
+				<label>
+				<input type="checkbox" name="preferences" value="haircare"/>
+				Hair care
+				</label>
+			</div>
+		<button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+	</div>
+{% endblock %}
+

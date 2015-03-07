@@ -30,12 +30,22 @@ class User:
 		""" A user subscribes for a plan """
 
 		new_subscription = models.UserSubscriptionModel(user=self.user,
-			subscription_id=self.subscription_id,
+			subscription_id=subscription_plan_id,
 			duration=duration,
 			timestamp=datetime.datetime.now())
 		new_subscription.save()
 		models.commit()
 
+	def get_profile(self):
+		""" Fetches the beauty profile of user """
+	
+		return self.user.profile
+		
+	def get_subscription(self):
+		""" Fetches the subscription detail of the user """
+	
+		return self.user.subscription
+	
 	def add_profile(self, **params):
 		""" A user creates/edits his/her beauty profile """
 
@@ -45,6 +55,7 @@ class User:
 			models.UserSkinConcernsModel.delete(self.user.id)
 			models.UserHairConcernsModel.delete(self.user.id)
 			models.UserFragrancesModel.delete(self.user.id)
+			models.UserPreferencesModel.delete(self.user.id)
 		else:
 			self.create_profile(**params)
 
@@ -66,6 +77,13 @@ class User:
 			fragrance = models.UserFragrancesModel(user=self.user,
 				fragrances_id = fragrance_id)
 			fragrance.save()
+
+		# A user can have one or more preferences of beauty products
+		# that he or she would like to receive
+		for preference in params["preferences"]:
+			user_preference = models.UserPreferencesModel(user=self.user,
+				preference = preference)
+			user_preference.save()
 
 		models.commit()
 

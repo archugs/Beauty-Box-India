@@ -15,7 +15,7 @@ class UserModel(db.Model):
 
 	id = Column(Integer, primary_key=True)
 	email = Column(String(100), index=True)
-	password_hash = Column(String(32))
+	password_hash = Column(String(160))
 	name = Column(String(50))
 	address = Column(String(500))
 	timestamp = Column(DateTime)
@@ -42,6 +42,12 @@ class UserModel(db.Model):
 		""" Gets a user object for given email """
 
 		return cls.query.filter(cls.email == email).scalar()
+
+	@classmethod
+	def get_all(cls):
+		""" Gets all the users """
+
+		return cls.query.all()
 
 class UserProfileModel(db.Model):
 	""" Stores the users beauty profiles """
@@ -112,6 +118,23 @@ class UserFragrancesModel(db.Model):
 	user = relationship("UserModel", backref="scents")
 	fragrances_id = Column(Integer, ForeignKey("fragrances.id"))
 	fragrances = relationship("FragrancesModel")
+	
+	def save(self):
+		db.session.add(self)
+		
+	@classmethod
+	def delete(cls, user_id):
+		cls.query.filter(cls.user_id == user_id).delete()
+
+class UserPreferencesModel(db.Model):
+	""" Stores what type of beauty products the user prefers """
+
+	__tablename__ = "users_preferences"
+
+	id = Column(Integer, primary_key=True)
+	user_id = Column(Integer, ForeignKey("users.id"), index=True)
+	user = relationship("UserModel", backref="preferences")
+	preference = Column(Enum("makeup", "skincare", "haircare", name="preferences_types"))
 	
 	def save(self):
 		db.session.add(self)
