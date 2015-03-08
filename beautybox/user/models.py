@@ -115,7 +115,7 @@ class UserFragrancesModel(db.Model):
 
 	id = Column(Integer, primary_key=True)
 	user_id = Column(Integer, ForeignKey("users.id"), index=True)
-	user = relationship("UserModel", backref="scents")
+	user = relationship("UserModel", backref="fragrances")
 	fragrances_id = Column(Integer, ForeignKey("fragrances.id"))
 	fragrances = relationship("FragrancesModel")
 	

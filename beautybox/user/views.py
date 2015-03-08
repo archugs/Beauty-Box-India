@@ -18,7 +18,7 @@ class UserView(FlaskView):
 			if not user.authentication(request.form["password"]):
 				error = "Invalid login credentials"
 			else:
-				session["user"] = user.email
+				session["user"] = request.form["email"]
 				return redirect(url_for('UserView:profile'))
 		return render_template("login.html", error=error)
 

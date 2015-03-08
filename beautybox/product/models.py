@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, UniqueConstraint, ForeignKey
+from sqlalchemy import Column, Integer, String, Float, DateTime, Boolean, UniqueConstraint, ForeignKey, Enum
 from sqlalchemy.orm import relationship
 
 from beautybox import db
@@ -11,7 +11,7 @@ class ProductModel(db.Model):
 	id = Column(Integer, primary_key=True)
 	name = Column(String(100), index=True)
 	description = Column(String(500))
-	product_type = Column(Enum("makeup", "skincare", "haircare", name="products_types"))
+	product_type = Column(Enum("makeup", "skincare", "haircare", "fragrance", name="products_types"))
 	product_category = Column(String(20))
 	price = Column(Float)
 	quantity = Column(Float)
@@ -29,6 +29,8 @@ class ProductModel(db.Model):
 class ProductsProfileModel(db.Model):
 	""" Stores the product characteristics """
 
+	__tablename__ = "products_profile"
+
 	id = Column(Integer, primary_key=True)
 	product_id = Column(Integer, ForeignKey("products.id"), index=True)
 	product = relationship("ProductModel", backref="profile")
@@ -40,10 +42,14 @@ class ProductsProfileModel(db.Model):
 	skin_tone = Column(Enum("light", "fair", "medium", "olive", "brown", "black", "all", name="product_skin_tones"))
 	skin_sensitivity = Column(Enum("high", "medium", "low", name="product_skin_sensitivity"))
 	hair_type = Column(Enum("oily", "normal", "dry", "all", name="product_hair_types"))
-	__table_args__ = (UniqueConstraint("product_id", name="uniq_productsprofile"),)
+	fragrance_id = Column(Integer, ForeignKey("fragrances.id"))
+	fragrance = relationship("FragrancesModel")
+	__table_args__ = (UniqueConstraint("product_id", name="uniq_productprofile"),)
 
 class ProductConcernsModel(db.Model):
 	""" Stores all the skin/hair concerns that a product addresses or claims to solve """
+
+	__tablename__ = "products_concerns"
 
 	id = Column(Integer, primary_key=True)
 	product_id = Column(Integer, ForeignKey("products.id"), index=True)
@@ -56,11 +62,13 @@ class ProductSubscriptionModel(db.Model):
 		A product can belong to more than one plan type.
 	"""
 
+	__tablename__ = "products_subscription"
+
 	id = Column(Integer, primary_key=True)
 	product_id = Column(Integer, ForeignKey("products.id"), index=True)
-	product = relationship("ProductModel", backref="concerns")
+	product = relationship("ProductModel", backref="subscriptions")
 	subscription_id = Column(Integer, ForeignKey("subscriptions.id"))
-	subscription = relationship("SubscriptionModel", backref="subscriptions")
+	subscription = relationship("SubscriptionModel")
 
 	@classmethod
 	def get_by_subscription_plan(cls, plan_id):

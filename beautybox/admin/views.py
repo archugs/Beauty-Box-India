@@ -22,6 +22,16 @@ class AdminView(FlaskView):
 				return redirect(url_for('AdminView:dashboard'))
 		return render_template("admin_login.html", error=error)
 
+	@route("/dashboard/", methods=["GET", "POST"])
+	@requires_admin_login
+	def dashboard(self):
+		""" Admin dashboard page """
+		beauty_boxes = None	
+		if request.method == "POST":
+			admin = Admin()
+			beauty_boxes = admin.generate_beauty_boxes()
+		return render_template("admin_dashboard.html", data=beauty_boxes)
+
 AdminView.register(app, "/")
 
 

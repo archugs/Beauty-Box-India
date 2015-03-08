@@ -11,9 +11,9 @@
 		<div class="container-fluid">
 			<div class="row">
 				<div class="col-md-6"></div>
-				<div class="col-md-2">Beauty profile</div>
-				<div class="col-md-2">Subscribe</div>
-				<div class="col-md-2">Logout</div>
+				<div class="col-md-2"><a href="{{url_for('UserView:profile')}}">Beauty profile</a></div>
+				<div class="col-md-2"><a href="{{url_for('UserView:subscription')}}">Subscribe</a></div>
+				<div class="col-md-2"><a href="{{url_for('UserView:logout')}}">Logout</a></div>
 			</div>
 		</div>
 		{% block content %}
