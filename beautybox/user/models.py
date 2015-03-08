@@ -169,8 +169,7 @@ class UserWishlistModel(db.Model):
 class UserSubscriptionModel(db.Model):
 	""" Stores the subscription plan that the user has opted for """
 
-	___tablename__ = "users_subscription"
-
+	__tablename__ = "users_subscription"
 
 	id = Column(Integer, primary_key=True)
 	user_id = Column(Integer, ForeignKey("users.id"), index=True)
