@@ -23,10 +23,13 @@
 								<button type="submit" class="btn btn-primary">Generate monthly beauty boxes</button>
 							</form>
 							{% if data %}
+							<h4>Monthly beauty box orders</h4>
 							{% for d in data %}
 							<p><b>User</b></p>
-							<p>{{d.user.name}}</p>
-							<p>{{d.user.email}}</p>
+							<ul>
+							<li>{{d.user.name}}</li>
+							<li>{{d.user.email}}</li>
+							</ul>
 							<p><b>Beauty box products</b></p>
 							<ul>
 							{% for p in d.products %}

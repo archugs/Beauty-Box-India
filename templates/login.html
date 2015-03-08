@@ -19,6 +19,7 @@
 							{% if error %}
 								<p class="error">{{error}}</p>
 							{% endif %}
+							<a href="{{url_for('AdminView:login')}}">Admin login</a>
 							<form method="post">
 								<div class="form-group">
 									<input type="email" class="form-control" name="email" placeholder="Email">

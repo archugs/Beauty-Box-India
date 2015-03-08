@@ -87,7 +87,7 @@ class User:
 
 		models.commit()
 
-	def update_profile(self, **params):
+	def update_profile(self, beauty_profile, **params):
 		""" Updates the user's beauty profile """
 
 		beauty_profile.age = params["age"]
