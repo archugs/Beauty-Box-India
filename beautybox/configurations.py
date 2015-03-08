@@ -1,3 +1,5 @@
+import os
+
 DB = {
 	"host": "localhost",
 	"db": "beautybox",
