@@ -146,7 +146,7 @@ class UserPreferencesModel(db.Model):
 class UserWishlistModel(db.Model):
 	""" Stores the user's wishlist """
 
-	___tablename__ = "users_wishlist"
+	__tablename__ = "users_wishlist"
 
 
 	id = Column(Integer, primary_key=True)
