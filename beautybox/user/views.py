@@ -84,6 +84,13 @@ class UserView(FlaskView):
 			return redirect(url_for('UserView:subscription'))
 		data = user.get_profile()
 		return render_template("profile.html", data=data)
+	
+	@route("/", methods=["GET", "POST"])
+	@requires_login
+	def index(self):
+		""" Root of app """
+
+		return redirect(url_for('UserView:profile'))
 
 	@route("/logout/", methods=["GET"])
 	@requires_login
